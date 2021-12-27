@@ -1,0 +1,14 @@
+{{ template "layout" .}}
+
+{{ define "konten" }}
+
+<h1 style="color: brown;">HOME</h1>
+<a href="/input">Tambah Data</a>
+
+<ul>
+    {{ range .KontenData }}
+        <li style="font-weight: bold;"><a href="/edit?idnya={{ .Id.Hex }}">{{ .Judul }} -- {{ .Isi }}</a></li>
+    {{ end }}
+</ul>
+
+{{ end }}

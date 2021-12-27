@@ -1,0 +1,65 @@
+{{ template "layout" .}}
+
+{{ define "konten" }}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Edit</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Here</a></li>
+                <li class="breadcrumb-item active">Edit</li>
+            </ol>
+        </nav>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/update" method="POST" enctype="multipart/form-data">
+                            {{ range .Pesan }}
+                                {{ if .IsError }}
+                                <h6 style="color: brown; margin-top: 10px;">{{ .Pesannya }}</h6>
+                                {{ end }}
+                            {{ end }}
+                            <div class="card-title">
+                                <div class="form-floating mb-3">
+                                    <input name="judul" type="text" class="form-control" id="floatingInputJudul"
+                                        placeholder="Masukan judul" required value="{{ .Judul }}">
+                                    <label for="floatingInputJudul">Judul</label>
+                                </div>
+                            </div>
+                            <textarea class="tinymce-editor" name="isi" required>
+                                {{ .Isi }}
+                            </textarea>
+                            <div class="form-floating mb-3" style="margin-top: 20px;">
+                                <input name="tag" type="text" class="form-control" id="floatingInputJudul"
+                                    placeholder="Masukan tag artikel" value="{{ .Tag }}">
+                                <label for="floatingInputJudul">Tag (optional)</label>
+                            </div>
+
+                            <div class="form-floating mb-3" style="margin-top: 20px;">
+                                <b>Thumbnail</b>
+                                <div class="col-sm-12">
+                                    <input name="thumb" class="form-control" type="file" accept="image/png, image/jpeg" />
+                                </div>
+                                <br>
+                                <img style="width: 200px;" src="{{ .Thumb }}" alt="{{ .Judul }}">
+                                <input type="hidden" name="gambar_existing" value="{{ .Thumb }}">
+                            </div>
+
+                            <div class="form-floating mb-3" style="margin-top: 20px;">
+                                <input type="hidden" name="tipe" value="{{ .Tipe }}">
+                                <input type="hidden" name="id" value="{{ .Id.Hex }}">
+                                <button style="width: 100%;" class="btn btn-success" type="submit">Update Konten</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{{ end }}

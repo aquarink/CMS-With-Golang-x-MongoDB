@@ -1,0 +1,18 @@
+{{ template "layout" .}}
+
+{{ define "konten" }}
+
+<h1 style="color: brown;">HOME</h1>
+<h1 style="color: red;">{{ .Nama }}</h1>
+
+<ul>
+    {{ range .Pendidikan }}
+        {{ if eq .Kelas "345" }}
+        <li style="font-weight: bold;">{{ .Sekolah }}</li>
+        {{ else }}
+        <li>{{ .Sekolah }}</li>
+        {{ end }}
+    {{ end }}
+</ul>
+
+{{ end }}

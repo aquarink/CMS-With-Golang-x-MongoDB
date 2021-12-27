@@ -1,0 +1,16 @@
+{{ template "layout" .}}
+
+{{ define "konten" }}
+
+<h1 style="color: brown;">Input Data</h1>
+<a href="/home">Lihat Data</a>
+<br><br>
+<form action="/save" method="post">
+    <input type="text" name="judul" placeholder="Masukan Judul">
+    <br>
+    <textarea name="isi" cols="30" rows="10" placeholder="Masukan isi konten"></textarea>
+    <br>
+    <input type="submit" value="Kirim">
+</form>
+
+{{ end }}
