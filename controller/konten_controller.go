@@ -722,9 +722,12 @@ func (handler *initKontenController) Gambar(w http.ResponseWriter, r *http.Reque
 
 // API ------------------------------------------------------------------------------------
 func (handler *initKontenController) RandomArtikel(w http.ResponseWriter, r *http.Request) {
-
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	// CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	w.WriteHeader(http.StatusOK)
 
 	data, err := handler.kontenServiceInterface.SerKontenRandom("artikel", 1)
 	if err != nil {
@@ -737,6 +740,17 @@ func (handler *initKontenController) RandomArtikel(w http.ResponseWriter, r *htt
 		return
 	}
 
+	// Kode    string `json:"kode"`
+	// Tipe    string `json:"tipe"`
+	// Judul   string `json:"judul"`
+	// Short   string `json:"short"`
+	// Isi     string `json:"isi"`
+	// Thumb   string `json:"thumb"`
+	// Tanggal string `json:"tanggal"`
+	// Slug    string `json:"slug"`
+	// Tag     string `json:"tag"`
+	// View    int    `json:"view"`
+
 	push := model.JsonApi{
 		Stat:       400,
 		KontenJson: data,
@@ -746,9 +760,12 @@ func (handler *initKontenController) RandomArtikel(w http.ResponseWriter, r *htt
 }
 
 func (handler *initKontenController) RandomPortofolio(w http.ResponseWriter, r *http.Request) {
-
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	// CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	w.WriteHeader(http.StatusOK)
 
 	data, err := handler.kontenServiceInterface.SerKontenRandom("portofolio", 1)
 	if err != nil {
@@ -770,9 +787,12 @@ func (handler *initKontenController) RandomPortofolio(w http.ResponseWriter, r *
 }
 
 func (handler *initKontenController) RandomKonten(w http.ResponseWriter, r *http.Request) {
-
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	// CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	w.WriteHeader(http.StatusOK)
 
 	data, err := handler.kontenServiceInterface.SerKontenRandom("", 3)
 	if err != nil {
@@ -794,9 +814,12 @@ func (handler *initKontenController) RandomKonten(w http.ResponseWriter, r *http
 }
 
 func (handler *initKontenController) ArtikelTerbaru(w http.ResponseWriter, r *http.Request) {
-
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	// CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	w.WriteHeader(http.StatusOK)
 
 	data, err := handler.kontenServiceInterface.SerArtikelTerbaru(3)
 	if err != nil {
@@ -818,9 +841,12 @@ func (handler *initKontenController) ArtikelTerbaru(w http.ResponseWriter, r *ht
 }
 
 func (handler *initKontenController) ArtikelPopular(w http.ResponseWriter, r *http.Request) {
-
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	// CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	w.WriteHeader(http.StatusOK)
 
 	data, err := handler.kontenServiceInterface.SerArtikelPopular(6)
 	if err != nil {
@@ -842,9 +868,12 @@ func (handler *initKontenController) ArtikelPopular(w http.ResponseWriter, r *ht
 }
 
 func (handler *initKontenController) SemuaArtikelRandom(w http.ResponseWriter, r *http.Request) {
-
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	// CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	w.WriteHeader(http.StatusOK)
 
 	data, err := handler.kontenServiceInterface.SerKontenRandom("artikel", 10000)
 	if err != nil {
@@ -866,9 +895,12 @@ func (handler *initKontenController) SemuaArtikelRandom(w http.ResponseWriter, r
 }
 
 func (handler *initKontenController) SemuaPortofolioDesc(w http.ResponseWriter, r *http.Request) {
-
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	// CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	w.WriteHeader(http.StatusOK)
 
 	data, err := handler.kontenServiceInterface.SerSemuaPortofolio()
 	if err != nil {
@@ -889,15 +921,127 @@ func (handler *initKontenController) SemuaPortofolioDesc(w http.ResponseWriter, 
 	json.NewEncoder(w).Encode(push)
 }
 
-// ----------------------------------------------------------------------------------------
+func (handler *initKontenController) DetailArtikel(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	// CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	w.WriteHeader(http.StatusOK)
+
+	slug := r.URL.Query().Get("id")
+
+	data, err := handler.kontenServiceInterface.SerKontenCariBySlug(slug)
+	if err != nil {
+		push := model.JsonApi{
+			Stat:       400,
+			KontenJson: nil,
+		}
+
+		json.NewEncoder(w).Encode(push)
+		return
+	}
+
+	dataJsonnya := []model.KontenJson{
+		{
+			Kode:    data.Kode,
+			Tipe:    data.Tipe,
+			Judul:   data.Judul,
+			Short:   data.Isi,
+			Isi:     data.Isi,
+			Thumb:   data.Thumb,
+			Tanggal: data.Tanggal,
+			Slug:    data.Slug,
+			Tag:     data.Tag,
+			View:    0,
+		},
+	}
+
+	push := model.JsonApi{
+		Stat:       200,
+		KontenJson: dataJsonnya,
+	}
+
+	json.NewEncoder(w).Encode(push)
+}
+
+func (handler *initKontenController) RandomArtikel6(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	// CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	w.WriteHeader(http.StatusOK)
+
+	data, err := handler.kontenServiceInterface.SerKontenRandom("artikel", 6)
+	if err != nil {
+		push := model.JsonApi{
+			Stat:       400,
+			KontenJson: nil,
+		}
+
+		json.NewEncoder(w).Encode(push)
+		return
+	}
+
+	push := model.JsonApi{
+		Stat:       200,
+		KontenJson: data,
+	}
+
+	json.NewEncoder(w).Encode(push)
+}
+
+func (handler *initKontenController) CariKonten(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	// CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	w.WriteHeader(http.StatusOK)
+
+	cari := r.URL.Query().Get("find")
+
+	data, err := handler.kontenServiceInterface.SerKontenCariLike(cari)
+	if err != nil {
+		push := model.JsonApi{
+			Stat:       400,
+			KontenJson: nil,
+		}
+
+		json.NewEncoder(w).Encode(push)
+		return
+	}
+
+	push := model.JsonApi{
+		Stat:       200,
+		KontenJson: data,
+	}
+
+	json.NewEncoder(w).Encode(push)
+}
 
 func (handler *initKontenController) Views(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	// CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	w.WriteHeader(http.StatusOK)
 
-	slug := "8u-usdh234567h-ihv-hg-hdfhdf-4567446831"
+	type PushData struct {
+		Stat int
+	}
+
+	slug := r.URL.Query().Get("id")
 
 	dt, err := handler.kontenServiceInterface.SerKontenCariBySlug(slug)
 	if err != nil {
-		http.Error(w, "ERROR SerKontenCariBySlug "+err.Error(), http.StatusInternalServerError)
+		push := PushData{
+			Stat: 400,
+		}
+
+		json.NewEncoder(w).Encode(push)
 		return
 	}
 
@@ -906,10 +1050,20 @@ func (handler *initKontenController) Views(w http.ResponseWriter, r *http.Reques
 
 	data, err := handler.kontenServiceInterface.SerKontenTambahView(slug, vw)
 	if err != nil {
-		http.Error(w, "ERROR SerKontenTambahView "+err.Error(), http.StatusInternalServerError)
+		push := PushData{
+			Stat: 400,
+		}
+
+		json.NewEncoder(w).Encode(push)
 		return
 	}
 
+	push := PushData{
+		Stat: 200,
+	}
+
 	log.Println(data)
-	http.Error(w, "Berhasil Views", http.StatusOK)
+	json.NewEncoder(w).Encode(push)
 }
+
+// ----------------------------------------------------------------------------------------

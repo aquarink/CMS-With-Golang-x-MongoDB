@@ -24,6 +24,7 @@ type KontenServiceInterface interface {
 	SerArtikelPopular(limit int64) ([]model.KontenJson, error)
 	SerArtikelTerbaru(limit int64) ([]model.KontenJson, error)
 	SerSemuaPortofolio() ([]model.KontenJson, error)
+	SerKontenCariLike(like string) ([]model.KontenJson, error)
 
 	// InsertDataService(input models.PrizesInput) (models.Prize, error)
 	// UpdateDataService(ID int, input models.PrizesInput) (models.Prize, error)
@@ -42,11 +43,22 @@ func KontenService(kontenInterface reposirory.KontenInterface) *initKonten {
 
 func (srvc *initKonten) SerKontenInsert(input model.KontenInput) (*mongo.InsertOneResult, error) {
 
+	srt := ""
+	if len(input.Isi) > 45 {
+		srt = input.Isi[3:45]
+	}
+
+	if len(input.Isi) < 45 {
+		max := len(input.Isi) - 4
+		srt = input.Isi[3:max]
+	}
+
 	if input.Tipe == "artikel" {
 		plain := model.KontenInput{
 			Kode:    input.Kode,
 			Tipe:    input.Tipe,
 			Judul:   input.Judul,
+			Short:   srt,
 			Isi:     input.Isi,
 			Thumb:   input.Thumb,
 			Tanggal: time.Now().Format("2006-01-02 15:04:05"),
@@ -64,6 +76,7 @@ func (srvc *initKonten) SerKontenInsert(input model.KontenInput) (*mongo.InsertO
 			Kode:    input.Kode,
 			Tipe:    input.Tipe,
 			Judul:   input.Judul,
+			Short:   srt,
 			Isi:     input.Isi,
 			Thumb:   input.Thumb,
 			Tanggal: time.Now().Format("2006-01-02 15:04:05"),
@@ -80,9 +93,19 @@ func (srvc *initKonten) SerKontenInsert(input model.KontenInput) (*mongo.InsertO
 }
 
 func (srvc *initKonten) SerKontenUpdate(kode string, input model.KontenUpdate) (*mongo.UpdateResult, error) {
+	srt := ""
+	if len(input.Isi) > 45 {
+		srt = input.Isi[3:45]
+	}
+
+	if len(input.Isi) < 45 {
+		max := len(input.Isi) - 4
+		srt = input.Isi[3:max]
+	}
 
 	plain := model.KontenUpdate{
 		Judul: input.Judul,
+		Short: srt,
 		Isi:   input.Isi,
 		Thumb: input.Thumb,
 		Tahun: input.Tahun,
@@ -156,5 +179,10 @@ func (srvc *initKonten) SerArtikelTerbaru(limit int64) ([]model.KontenJson, erro
 
 func (srvc *initKonten) SerSemuaPortofolio() ([]model.KontenJson, error) {
 	data, err := srvc.services.RepoSemuaPortofolio()
+	return data, err
+}
+
+func (srvc *initKonten) SerKontenCariLike(like string) ([]model.KontenJson, error) {
+	data, err := srvc.services.RepoKontenCariLike(like)
 	return data, err
 }

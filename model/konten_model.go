@@ -8,6 +8,7 @@ type KontenFull struct {
 	Kode    string             `json:"kode"`
 	Tipe    string             `json:"tipe"`
 	Judul   string             `json:"judul"`
+	Short   string             `json:"short"`
 	Isi     string             `json:"isi"`
 	Thumb   string             `json:"thumb"`
 	Tanggal string             `json:"tanggal"`
@@ -22,6 +23,7 @@ type KontenPlain struct {
 	Kode    string
 	Tipe    string
 	Judul   string
+	Short   string
 	Isi     string
 	Thumb   string
 	Tanggal string
@@ -36,6 +38,7 @@ type KontenInput struct {
 	Kode    string `json:"kode"`
 	Tipe    string `json:"tipe"`
 	Judul   string `json:"judul"`
+	Short   string `json:"short"`
 	Isi     string `json:"isi"`
 	Thumb   string `json:"thumb"`
 	Tanggal string `json:"tanggal"`
@@ -48,6 +51,7 @@ type KontenInput struct {
 
 type KontenUpdate struct {
 	Judul string `json:"judul"`
+	Short string `json:"short"`
 	Isi   string `json:"isi"`
 	Thumb string `json:"thumb"`
 	Tahun string `json:"tahun"`
@@ -136,6 +140,7 @@ type KontenJson struct {
 	Kode    string `json:"kode"`
 	Tipe    string `json:"tipe"`
 	Judul   string `json:"judul"`
+	Short   string `json:"short"`
 	Isi     string `json:"isi"`
 	Thumb   string `json:"thumb"`
 	Tanggal string `json:"tanggal"`

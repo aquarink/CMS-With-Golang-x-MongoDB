@@ -27,6 +27,7 @@ type KontenInterface interface {
 	RepoArtikelPopular(limit int64) ([]model.KontenJson, error)
 	RepoArtikelTerbaru(limit int64) ([]model.KontenJson, error)
 	RepoSemuaPortofolio() ([]model.KontenJson, error)
+	RepoKontenCariLike(like string) ([]model.KontenJson, error)
 
 	// UbahData(b model.KontenPlain) (model.KontenPlain, error)
 	// HapusData(b model.KontenPlain) (model.KontenPlain, error)
@@ -282,10 +283,44 @@ func (db *kontenDB) RepoSemuaPortofolio() ([]model.KontenJson, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	cur, err := db.database.Collection("konten").Find(ctx, bson.M{"tipe": "artikel"}, options.Find().SetSort(bson.D{
+	cur, err := db.database.Collection("konten").Find(ctx, bson.M{"tipe": "portofolio"}, options.Find().SetSort(bson.D{
 		{Key: "tahun", Value: -1},
 		{Key: "bulan", Value: -1},
 	}))
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer cur.Close(ctx)
+
+	err = cur.All(ctx, &mdl)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := cur.Err(); err != nil {
+		return nil, err
+	}
+
+	return mdl, err
+}
+
+func (db *kontenDB) RepoKontenCariLike(like string) ([]model.KontenJson, error) {
+	var mdl []model.KontenJson
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	query := bson.M{
+		"judul": bson.M{
+			"$regex": primitive.Regex{
+				Pattern: like,
+				Options: "i",
+			},
+		},
+	}
+
+	cur, err := db.database.Collection("konten").Find(ctx, query)
 
 	if err != nil {
 		return nil, err

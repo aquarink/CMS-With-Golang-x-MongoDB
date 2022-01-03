@@ -46,7 +46,6 @@ func main() {
 	r.HandleFunc("/update", kontenController.ContentUpdate)
 
 	r.HandleFunc("/gambar", kontenController.Gambar)
-	r.HandleFunc("/view", kontenController.Views)
 
 	// API ----------------------
 	r.HandleFunc("/random-artikel", kontenController.RandomArtikel)
@@ -56,6 +55,11 @@ func main() {
 	r.HandleFunc("/artikel-popular", kontenController.ArtikelPopular)
 	r.HandleFunc("/artikel-semua", kontenController.SemuaArtikelRandom)
 	r.HandleFunc("/portofolio-semua", kontenController.SemuaPortofolioDesc)
+
+	r.HandleFunc("/detail-artikel", kontenController.DetailArtikel)
+	r.HandleFunc("/random-artikel6", kontenController.RandomArtikel6)
+	r.HandleFunc("/konten-cari", kontenController.CariKonten)
+	r.HandleFunc("/view", kontenController.Views)
 
 	// SERVER
 	err := http.ListenAndServe(":8899", r)
