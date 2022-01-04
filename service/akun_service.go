@@ -61,7 +61,7 @@ func (srvc *initAkun) SerDelSessionLogout(kode string, w http.ResponseWriter, r 
 		log.Println(res.DeletedCount)
 	}
 
-	http.Redirect(w, r, "/", http.StatusSeeOther)
+	http.Redirect(w, r, "/in", http.StatusSeeOther)
 }
 
 func (srvc *initAkun) SerCheckLogin(w http.ResponseWriter, r *http.Request) {
@@ -69,7 +69,7 @@ func (srvc *initAkun) SerCheckLogin(w http.ResponseWriter, r *http.Request) {
 	data, _ := srvc.servicesAkun.RepoGetSession(sekarang, "username")
 
 	if data.SessiValue == "" {
-		http.Redirect(w, r, "/", http.StatusSeeOther)
+		http.Redirect(w, r, "/in", http.StatusSeeOther)
 		return
 	}
 

@@ -18,8 +18,8 @@ func main() {
 	r := http.NewServeMux()
 
 	// assets
-	assets := http.FileServer((http.Dir("assets")))
-	r.Handle("/static/", http.StripPrefix("/static", assets))
+	assets := http.FileServer((http.Dir("/var/user/back/assets/")))
+	r.Handle("/static/", http.StripPrefix("/static/", assets))
 
 	// REPO SERVICE CONTROLLER
 	kontenRepo := reposirory.KontenRepository(conn())
@@ -30,7 +30,7 @@ func main() {
 
 	kontenController := controller.KontenController(kontenService, akunService)
 
-	r.HandleFunc("/", kontenController.Landing)
+	r.HandleFunc("/in", kontenController.Landing)
 	r.HandleFunc("/masuk", kontenController.Masuk)
 	r.HandleFunc("/keluar", kontenController.Keluar)
 	r.HandleFunc("/dashboard", kontenController.Dashboard)
@@ -74,7 +74,7 @@ func conn() *mongo.Database {
 
 	monitor := &event.CommandMonitor{
 		Started: func(_ context.Context, evt *event.CommandStartedEvent) {
-			log.Print(evt.Command)
+			// log.Print(evt.Command)
 		},
 	}
 

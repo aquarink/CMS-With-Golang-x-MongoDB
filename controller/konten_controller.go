@@ -29,12 +29,12 @@ func KontenController(kontenService service.KontenServiceInterface, akunService 
 // Controller
 
 func (handler *initKontenController) Landing(w http.ResponseWriter, r *http.Request) {
-	sekarang := time.Now().Format("2006-01-02")
-	getSes, _ := handler.akunServiceInterface.SerGetSession(sekarang, "username")
-	if getSes.SessiValue != "" {
-		http.Redirect(w, r, "/dashboard", http.StatusSeeOther)
-		return
-	}
+	// sekarang := time.Now().Format("2006-01-02")
+	// getSes, _ := handler.akunServiceInterface.SerGetSession(sekarang, "username")
+	// if getSes.SessiValue != "" {
+	// 	http.Redirect(w, r, "/dashboard", http.StatusSeeOther)
+	// 	return
+	// }
 
 	tmpl, _ := template.ParseFiles(path.Join("pages", "Landing.htm"))
 	tmpl.Execute(w, nil)
@@ -677,14 +677,14 @@ func (handler *initKontenController) Gambar(w http.ResponseWriter, r *http.Reque
 
 		ran := primitive.NewObjectID().Hex()
 		rename := "./assets/gambar/" + ran + "." + ext
-		fileName := "http://localhost:8899/static/gambar/" + ran + "." + ext
+		fileName := "https://api.juripebrianto.my.id/static/gambar/" + ran + "." + ext
 
 		tmpfile, err := os.Create(rename)
 		if err != nil {
 			log.Println("ERROR os.Create : " + err.Error())
 
 			p := TinyMCE{
-				FileName: "http://localhost:8899/static/no-image-1.png",
+				FileName: "https://api.juripebrianto.my.id/static/no-image-1.png",
 			}
 
 			json.NewEncoder(w).Encode(p)
@@ -698,7 +698,7 @@ func (handler *initKontenController) Gambar(w http.ResponseWriter, r *http.Reque
 			log.Println("ERROR osio.Copy : " + err.Error())
 
 			p := TinyMCE{
-				FileName: "http://localhost:8899/static/no-image-2.png",
+				FileName: "https://api.juripebrianto.my.id/static/no-image-2.png",
 			}
 
 			json.NewEncoder(w).Encode(p)
@@ -714,7 +714,7 @@ func (handler *initKontenController) Gambar(w http.ResponseWriter, r *http.Reque
 	}
 
 	p := TinyMCE{
-		FileName: "http://localhost:8899/static/no-image-3.png",
+		FileName: "https://api.juripebrianto.my.id/static/no-image-3.png",
 	}
 
 	json.NewEncoder(w).Encode(p)
