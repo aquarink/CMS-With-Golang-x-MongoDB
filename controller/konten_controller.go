@@ -364,7 +364,7 @@ func (handler *initKontenController) ContentSave(w http.ResponseWriter, r *http.
 		}
 
 		rename := "./assets/gambar/" + ran + "." + ext
-		fileName := "static/gambar/" + ran + "." + ext
+		fileName := "assets/gambar/" + ran + "." + ext
 
 		tmpfile, err := os.Create(rename)
 		if err != nil {
@@ -567,7 +567,7 @@ func (handler *initKontenController) ContentUpdate(w http.ResponseWriter, r *htt
 		}
 
 		rename := "./assets/gambar/" + ran + "." + ext
-		fileNameChange := "static/gambar/" + ran + "." + ext
+		fileNameChange := "assets/gambar/" + ran + "." + ext
 
 		tmpfile, err := os.Create(rename)
 		if err != nil {
@@ -677,14 +677,14 @@ func (handler *initKontenController) Gambar(w http.ResponseWriter, r *http.Reque
 
 		ran := primitive.NewObjectID().Hex()
 		rename := "./assets/gambar/" + ran + "." + ext
-		fileName := "https://api.juripebrianto.my.id/static/gambar/" + ran + "." + ext
+		fileName := "https://api.juripebrianto.my.id/assets/gambar/" + ran + "." + ext
 
 		tmpfile, err := os.Create(rename)
 		if err != nil {
 			log.Println("ERROR os.Create : " + err.Error())
 
 			p := TinyMCE{
-				FileName: "https://api.juripebrianto.my.id/static/no-image-1.png",
+				FileName: "https://api.juripebrianto.my.id/assets/no-image-1.png",
 			}
 
 			json.NewEncoder(w).Encode(p)
@@ -698,7 +698,7 @@ func (handler *initKontenController) Gambar(w http.ResponseWriter, r *http.Reque
 			log.Println("ERROR osio.Copy : " + err.Error())
 
 			p := TinyMCE{
-				FileName: "https://api.juripebrianto.my.id/static/no-image-2.png",
+				FileName: "https://api.juripebrianto.my.id/assets/no-image-2.png",
 			}
 
 			json.NewEncoder(w).Encode(p)
@@ -714,7 +714,7 @@ func (handler *initKontenController) Gambar(w http.ResponseWriter, r *http.Reque
 	}
 
 	p := TinyMCE{
-		FileName: "https://api.juripebrianto.my.id/static/no-image-3.png",
+		FileName: "https://api.juripebrianto.my.id/assets/no-image-3.png",
 	}
 
 	json.NewEncoder(w).Encode(p)
