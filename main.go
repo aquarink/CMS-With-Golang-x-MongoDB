@@ -18,7 +18,7 @@ func main() {
 	r := http.NewServeMux()
 
 	// assets
-	assets := http.FileServer((http.Dir("/var/user/back/assets/")))
+	assets := http.FileServer((http.Dir("assets")))
 	r.Handle("/static/", http.StripPrefix("/static/", assets))
 
 	// REPO SERVICE CONTROLLER
