@@ -942,12 +942,22 @@ func (handler *initKontenController) DetailArtikel(w http.ResponseWriter, r *htt
 		return
 	}
 
+	srt := ""
+	if len(data.Isi) > 45 {
+		srt = data.Isi[3:45]
+	}
+
+	if len(data.Isi) < 45 {
+		max := len(data.Isi) - 4
+		srt = data.Isi[3:max]
+	}
+
 	dataJsonnya := []model.KontenJson{
 		{
 			Kode:    data.Kode,
 			Tipe:    data.Tipe,
 			Judul:   data.Judul,
-			Short:   data.Isi,
+			Short:   srt,
 			Isi:     data.Isi,
 			Thumb:   data.Thumb,
 			Tanggal: data.Tanggal,

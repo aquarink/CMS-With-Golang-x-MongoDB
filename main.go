@@ -19,7 +19,7 @@ func main() {
 
 	// assets
 	assets := http.FileServer((http.Dir("assets")))
-	r.Handle("/static/", http.StripPrefix("/static/", assets))
+	r.Handle("/assets/", http.StripPrefix("/assets/", assets))
 
 	// REPO SERVICE CONTROLLER
 	kontenRepo := reposirory.KontenRepository(conn())
