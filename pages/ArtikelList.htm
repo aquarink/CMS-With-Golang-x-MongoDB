@@ -38,7 +38,7 @@
                                     <td>{{ .Judul }}</td>
                                     <td>{{ .Tanggal }}</td>
                                     <td>{{ .View }}</td>
-                                    <td><a href="/artikel/{{ .Slug }}">Lihat</a></td>
+                                    <td><a target="_blank" href="https://juripebrianto.my.id/artikel/{{ .Slug }}">Lihat</a></td>
                                     <td><a href="/edit?id={{ .Id.Hex }}">Edit</a></td>
                                 </tr>
                                 {{ end }}
